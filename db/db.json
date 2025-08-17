@@ -19,7 +19,7 @@
       },
       {
         "id": 5,
-        "tipo":"Pão mexicano"
+        "tipo": "Pão mexicano"
       }
     ],
     "carnes": [
@@ -69,17 +69,30 @@
   },
   "status": [
     {
-      "id": 1,
+      "id": "1",
       "tipo": "Solicitado"
     },
     {
-      "id": 2,
+      "id": "2",
       "tipo": "Em produção"
     },
     {
-      "id": 3,
+      "id": "3",
       "tipo": "Finalizado"
     }
   ],
-  "burgers": []
+  "burgers": [
+    {
+      "id": "b44b",
+      "nome": "nice",
+      "carne": "Alcatra",
+      "pao": "Italiano Branco",
+      "opcionais": [
+        "Pepino",
+        "Tomate",
+        "Cheddar"
+      ],
+      "status": "Solicitado"
+    }
+  ]
 }
