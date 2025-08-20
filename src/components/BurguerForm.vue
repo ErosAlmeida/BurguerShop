@@ -53,52 +53,65 @@ export default {
     }
   },
   methods: {
-    async getIngredientes() {
-      const req = await fetch('http://localhost:3000/ingredientes')
-      const data = await req.json()
-
-      this.paes = data.paes
-      this.carnes = data.carnes
-      this.opcionaisdata = data.opcionais
-    },
-    async createBurger(e) {
-
-      e.preventDefault()
-
+  async getIngredientes() {
+    try {
+      const req = await fetch('http://localhost:3000/ingredientes');
+      const data = await req.json();
+      
+      this.paes = data.paes;
+      this.carnes = data.carnes;
+      this.opcionaisdata = data.opcionais;
+    } catch (err) {
+      console.error("Erro ao carregar ingredientes:", err);
+      
+      // Dados de fallback para desenvolvimento
+      this.paes = [{ id: 1, tipo: "Pão Francês (fallback)" }];
+      this.carnes = [{ id: 1, tipo: "Carne (fallback)" }];
+      this.opcionaisdata = [{ id: 1, tipo: "Queijo (fallback)" }];
+      
+      this.msg = "Erro ao carregar ingredientes. Usando dados locais.";
+      setTimeout(() => this.msg = "", 3000);
+    }
+  },
+  
+  async createBurger(e) {
+    e.preventDefault();
+    
+    try {
       const data = {
         nome: this.nome,
         carne: this.carne,
         pao: this.pao,
         opcionais: Array.from(this.opcionais),
         status: "Solicitado"
-      }
-
-      const dataJson = JSON.stringify(data)    
+      };
 
       const req = await fetch("http://localhost:3000/burgers", {
         method: "POST",
-        headers: { "Content-Type" : "application/json" },
-        body: dataJson
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
       });
 
-      const res = await req.json()
-
-      console.log(res)
-
-      this.msg = "Pedido realizado com sucesso!"
-
-      // clear message
-      setTimeout(() => this.msg = "", 3000)
-
-      // limpar campos
-      this.nome = ""
-      this.carne = ""
-      this.pao = ""
-      this.opcionais = []
+      const res = await req.json();
+      console.log("Burger criado:", res);
       
+      this.msg = "Pedido realizado com sucesso!";
+      setTimeout(() => this.msg = "", 3000);
+      
+      // Reset do formulário
+      this.nome = "";
+      this.carne = "";
+      this.pao = "";
+      this.opcionais = [];
+      
+    } catch (err) {
+      console.error("Erro ao criar burger:", err);
+      this.msg = "Erro ao enviar pedido. Verifique o servidor.";
+      setTimeout(() => this.msg = "", 3000);
     }
-  },
-  mounted () {
+  }
+},
+  mounted() {
     this.getIngredientes()
   },
   components: {
