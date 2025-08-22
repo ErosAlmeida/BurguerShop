@@ -16,10 +16,6 @@
       {
         "id": 4,
         "tipo": "Integral"
-      },
-      {
-        "id": 5,
-        "tipo": "Pão mexicano"
       }
     ],
     "carnes": [
@@ -69,30 +65,41 @@
   },
   "status": [
     {
-      "id": "1",
+      "id": 1,
       "tipo": "Solicitado"
     },
     {
-      "id": "2",
+      "id": 2,
       "tipo": "Em produção"
     },
     {
-      "id": "3",
+      "id": 3,
       "tipo": "Finalizado"
     }
   ],
   "burgers": [
     {
-      "id": "b44b",
-      "nome": "nice",
-      "carne": "Alcatra",
+      "nome": "Matheus Battisti",
+      "carne": "Picanha",
       "pao": "Italiano Branco",
       "opcionais": [
-        "Pepino",
-        "Tomate",
-        "Cheddar"
+        "Bacon",
+        "Salame",
+        "Cebola roxa"
       ],
-      "status": "Solicitado"
+      "status": "Finalizado",
+      "id": 1
+    },
+    {
+      "nome": "João Coelho",
+      "carne": "Maminha",
+      "pao": "3 Queijos",
+      "opcionais": [
+        "Salame",
+        "Cebola roxa"
+      ],
+      "status": "Solicitado",
+      "id": 4
     }
   ]
 }
